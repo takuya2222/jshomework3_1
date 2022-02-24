@@ -3,39 +3,43 @@
 const onClickAdd = () => {
   const inputTodo = document.getElementById("input-todo").value;
   document.getElementById("input-todo").value = "";
-
+  
   createTodo(inputTodo);
-};
+ };
 
-const todos = [];
+  const todos = [];
 
 const createTodo = (text) => {
-  const todoRow = document.createElement("tr");
-  const todoId = document.createElement("td");
-  const todoComment = document.createElement("td");
-  const todoState = document.createElement("td");
+  todos.forEach((index) => {
+    const todoRow = document.createElement("tr");
+    const todoId = document.createElement("td");
+    const todoComment = document.createElement("td");
+    const todoState = document.createElement("td");
+    const todoDeleteBtn = document.createElement("td");
 
-  const onProcessBtn = document.createElement("button");
-  onProcessBtn.innerText = "作業中";
+    const onProcessBtn = document.createElement("button");
+    const deleteBtn = document.createElement("button");
+    onProcessBtn.innerText = "作業中";
+    deleteBtn.innerText = "削除";
+  
 
-  const currentNum = 0;
-  todoComment.innerText = text;
+    todoId.textContent = index;
+    todoComment.textContent = text;
+    todoRow.appendChild(todoId);
+    todoRow.appendChild(todoComment);
+    todoRow.appendChild(todoState);
+    todoRow.appendChild(todoDeleteBtn);
+    
+    todoState.appendChild(onProcessBtn);
+    todoDeleteBtn.appendChild(deleteBtn);
+    
+    document.getElementById("todo-lists").appendChild(todoRow);
 
-  todoRow.appendChild(todoId);
-  todoRow.appendChild(todoComment);
-  todoRow.appendChild(todoState);
-
-  todoState.appendChild(onProcessBtn);
-
-  document.getElementById("todo-lists").appendChild(todoRow);
-
-  todos.push({
-    id: currentNum,
-    title:todoComment.innerText = text,
   });
-
-};
+    
+ };
 
 document
   .getElementById("add-btn")
   .addEventListener("click", () => onClickAdd());
+
