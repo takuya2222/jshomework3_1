@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-const inputTodo = document.getElementById("input-todo");
-const addTaskTarget = document.getElementById("addTask-target");
+const inputTodo = document.getElementById('input-todo');
+const addTaskTarget = document.getElementById('addTask-target');
 const todos = [];
 
 const onClickAdd = () => {
@@ -9,43 +9,43 @@ const onClickAdd = () => {
   todos.push(todo);
   
   createTodo(inputTodo);
-  inputTodo.value = "";
+  inputTodo.value = '';
 };
 
 
 const createTodo = (text) => {
-  while (addTaskTarget.firstChild) {
-    addTaskTarget.removeChild(addTaskTarget.firstChild);
-   }
+  addTaskTarget.textContent = '';
 
   todos.forEach((todo,number) => {
-    const todoRow = document.createElement("tr");
+    const todoRow = document.createElement('tr');
 
-    const todoId = document.createElement("td");
-    const todoComment = document.createElement("td");
-    const todoState = document.createElement("td");
-    const todoDeleteBtn = document.createElement("td");
+    const todoId = document.createElement('td');
+    const todoComment = document.createElement('td');
+    const status = document.createElement('td');
+    const todoDeleteButton= document.createElement('td');
     
-    const onProcessBtn = document.createElement("button");
-    onProcessBtn.innerText = todo.onProcessBtn;
-    const deleteBtn = document.createElement("button");
-    deleteBtn.innerText = "削除";
+    const statusButton = document.createElement('button');
+    statusButton.innerText = todo.onProcessBtn;
+    const deleteButton = document.createElement('button');
+    deleteButton.innerText = '削除';
     
     todoComment.textContent = todo.todoComment;
     todoId.textContent = number;
 
     todoRow.appendChild(todoId);
     todoRow.appendChild(todoComment);
-    todoRow.appendChild(todoState);
-    todoRow.appendChild(todoDeleteBtn);
+    todoRow.appendChild(status);
+    todoRow.appendChild(todoDeleteButton);
     
-    todoState.appendChild(onProcessBtn);
-    todoDeleteBtn.appendChild(deleteBtn);
+    status.appendChild(statusButton);
+    todoDeleteButton.appendChild(deleteButton);
 
     addTaskTarget.appendChild(todoRow);
+
+    console.log(addTaskTarget);
   });
 };
 
 document
-.getElementById("add-btn")
-.addEventListener("click", () => onClickAdd());
+.getElementById('add-btn')
+.addEventListener('click', () => onClickAdd());
